@@ -8,7 +8,7 @@ import (
 
 var re = regexp.MustCompile("\\[([U_]+)\\]")
 
-func checkDegraded(mdstat string) bool {
+func CheckDegraded(mdstat string) bool {
 	matches := re.FindAllStringSubmatch(mdstat, -1)
 	for _, match := range matches {
 		if strings.Count(match[1], "U") != len(match[1]) {
@@ -25,5 +25,5 @@ func Degraded() (bool, error) {
 		return false, err
 	}
 
-	return checkDegraded(string(buf)), nil
+	return CheckDegraded(string(buf)), nil
 }

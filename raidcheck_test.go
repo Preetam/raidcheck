@@ -12,7 +12,7 @@ md_d0 : active raid5 sde1[0] sdf1[4] sdb1[5] sdd1[2] sdc1[1]
 
 unused devices: <none>
 `
-	if checkDegraded(mdstat) {
+	if CheckDegraded(mdstat) {
 		t.Error("Expected degraded to be false")
 	}
 }
@@ -23,7 +23,7 @@ md0 : active raid5 sda1[0] sdd1[2] sdb1[1]
      1465151808 blocks level 5, 64k chunk, algorithm 2 [4/3] [UUU_]
     unused devices: <none>
 `
-	if !checkDegraded(mdstat) {
+	if !CheckDegraded(mdstat) {
 		t.Error("Expected degraded to be true")
 	}
 }
@@ -44,7 +44,7 @@ md0 : active raid1 sdb1[1] sda1[0]
 
 unused devices: <none>
 `
-	if checkDegraded(mdstat) {
+	if CheckDegraded(mdstat) {
 		t.Error("Expected degraded to be false")
 	}
 }
@@ -57,7 +57,7 @@ md127 : active raid5 sdh1[6] sdg1[4] sdf1[3] sde1[2] sdd1[1] sdc1[0]
 
 unused devices: <none>
 `
-	if !checkDegraded(mdstat) {
+	if !CheckDegraded(mdstat) {
 		t.Error("Expected degraded to be true")
 	}
 }
@@ -70,7 +70,7 @@ md0 : active raid6 sdf1[0] sde1[1] sdd1[2] sdc1[3] sdb1[4] sda1[5] hdb1[6]
 
 unused devices: <none>
 `
-	if checkDegraded(mdstat) {
+	if CheckDegraded(mdstat) {
 		t.Error("Expected degraded to be false")
 	}
 }
@@ -82,7 +82,7 @@ md1 : active raid1 sde1[6](F) sdg1[1] sdb1[4] sdd1[3] sdc1[2]
 
 unused devices: <none>
 `
-	if !checkDegraded(mdstat) {
+	if !CheckDegraded(mdstat) {
 		t.Error("Expected degraded to be true")
 	}
 }
@@ -91,7 +91,7 @@ func Test7(t *testing.T) {
 	mdstat := `Personalities : 
 unused devices: <none>
 `
-	if checkDegraded(mdstat) {
+	if CheckDegraded(mdstat) {
 		t.Error("Expected degraded to be false")
 	}
 }
