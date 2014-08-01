@@ -95,3 +95,20 @@ unused devices: <none>
 		t.Error("Expected degraded to be false")
 	}
 }
+
+func Test8(t *testing.T) {
+	mdstat := `Personalities : [raid10] [raid1] 
+md0 : active raid1 sdd1[3] sdc1[2] sdb1[1] sda1[0]
+      1023936 blocks super 1.0 [4/4] [UUUU]
+      
+md1 : active raid10 sdc2[2] sdd2[3] sdb2[1] sda2[0]
+      974459904 blocks super 1.1 512K chunks 2 near-copies [4/4] [UUUU]
+      [==>..................]  resync = 12.4% (121352128/974459904) finish=89.1min speed=159445K/sec
+      bitmap: 8/8 pages [32KB], 65536KB chunk
+
+unused devices: <none>
+`
+	if !CheckDegraded(mdstat) {
+		t.Error("Expected degraded to be true")
+	}
+}
